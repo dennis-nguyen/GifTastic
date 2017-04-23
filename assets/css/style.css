@@ -1,0 +1,20 @@
+.panel-body {
+background-color: lightgrey;
+}
+
+.submitArea {
+    position: absolute;
+    margin-top: -155px;
+}
+
+.btn-info {
+    margin-top: 5px;
+}
+
+img {
+    border: 1px solid black;
+}
+
+h2 {
+    text-transform: uppercase;
+}
