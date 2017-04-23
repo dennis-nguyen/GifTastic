@@ -19,7 +19,7 @@ $(document).ready(function () {
     function appendGifs(response) {
         $(".gifArea").empty();
         for (i = 0; i < 10; i++) {
-            var gifDiv = $("<div class='col-lg-6'> </div>");
+            var gifDiv = $("<div class='col-lg-6 text-center'> </div>");
             var rating = $("<h2>").append("Rating: " + response.data[i].rating);
             var gifImage = $("<img>").attr("src", response.data[i].images.fixed_height_downsampled.url);
             gifImage.attr("data-animated", response.data[i].images.fixed_height_downsampled.url);
