@@ -1,5 +1,5 @@
-var topics = ["sushi", "bbq", "icecream", "kbbq"];
-var colors = ["red", "blue", "yellow", "orange", "teal", "black", "green", "lightblue", "darkgrey"];
+var topics = ["sushi", "bbq", "icecream"];
+var colors = ["red", "blue", "yellow", "orange", "teal", "black", "green", "lightblue", "darkgrey", "pink"];
 
 $(document).ready(function () {
 
@@ -18,7 +18,8 @@ $(document).ready(function () {
 
     function appendGifs(response) {
         $(".gifArea").empty();
-        for (i = 0; i < 10; i++) {
+        var randomNumber = (Math.floor(Math.random() * 10) + 1);
+        for (i = randomNumber; i < randomNumber+10; i++) {
             var gifDiv = $("<div class='col-lg-6 text-center'> </div>");
             var rating = $("<h2>").append("Rating: " + response.data[i].rating);
             var gifImage = $("<img>").attr("src", response.data[i].images.fixed_height_downsampled.url);
@@ -38,7 +39,7 @@ $(document).ready(function () {
             data: {
                 q: btnValue,
                 rating: "pg",
-                limit: 10,
+                limit: 25,
                 api_key: "dc6zaTOxFJmzC"
             },
         }).done(function (response) {
@@ -71,6 +72,6 @@ $(document).ready(function () {
     applyClickHandlers();
     makeButtons();
 
-    $(".container").on("click", ".topics", callGifs);
-    $(".container").on("click", "img", playPause);
+    $(".container-fluid").on("click", ".topics", callGifs);
+    $(".container-fluid").on("click", "img", playPause);
 });

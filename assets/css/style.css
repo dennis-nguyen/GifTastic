@@ -30,7 +30,8 @@ h2 {
     position: relative;
 }
 
-.container {
+.container-fluid {
     padding-bottom: 10px;
     font-family: 'Ranga', cursive;
+    font-size: 24px;
 }
