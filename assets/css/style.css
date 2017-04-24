@@ -18,10 +18,19 @@ img {
     border-radius: 5px;
 }
 
+h1 {
+    color: red;
+}
+
 h2 {
     text-transform: uppercase;
 }
 
 .panel-default {
     position: relative;
+}
+
+.container {
+    padding-bottom: 10px;
+    font-family: 'Ranga', cursive;
 }

@@ -1,19 +1,19 @@
-console.log("JS IS LINKED");
-var topics = ["sushi", "bbq", "dessert"];
+var topics = ["sushi", "bbq", "icecream", "kbbq"];
+var colors = ["red", "blue", "yellow", "orange", "teal", "black", "green", "lightblue", "darkgrey"];
 
 $(document).ready(function () {
 
     function makeButtons() {
         for (i = 0; i < topics.length; i++) {
-            console.log(topics[i]);
             $(".buttonArea").append("<button class='topics' data-topic=" + topics[i] + ">" + topics[i]);
         }
     }
-
+    //Adds Buttons, Didn't want to push and call makeButtons every time.
     function addButton() {
-        var enteredText = $("#sushiSearch").val().split(" ").join("+");
-        console.log(enteredText);
-        $(".buttonArea").append("<button class='topics' data-topic=" + enteredText + ">" + enteredText.split("+").join(" "));
+        if ($("#sushiSearch").val().length > 0) {
+            var enteredText = $("#sushiSearch").val().split(" ").join("+");
+            $(".buttonArea").append("<button class='topics' data-topic=" + enteredText + ">" + enteredText.split("+").join(" "));
+        }
     }
 
     function appendGifs(response) {
@@ -33,7 +33,6 @@ $(document).ready(function () {
 
     function callGifs() {
         var btnValue = $(this).data("topic");
-        console.log(btnValue);
         $.ajax({
             url: "https://api.giphy.com/v1/gifs/search?",
             data: {
@@ -43,9 +42,9 @@ $(document).ready(function () {
                 api_key: "dc6zaTOxFJmzC"
             },
         }).done(function (response) {
-            console.log(response);
             appendGifs(response);
         });
+        changeColor();
     }
 
     function playPause() {
@@ -56,16 +55,22 @@ $(document).ready(function () {
             $(this).attr("src", $(this).attr("data-animated"));
             $(this).attr("data-status", "animated");
         }
+        changeColor();
     }
 
-    $(".submit").on("click", function () {
-        addButton();
-         $('#sushiSearch').val("");
-    });
+    function changeColor() {
+        $(".topTitle").css("color", colors[Math.floor(Math.random() * colors.length)]);
+    }
 
+    function applyClickHandlers() {
+        $(".submit").on("click", function () {
+            addButton();
+            $('#sushiSearch').val("");
+        });
+    }
+    applyClickHandlers();
     makeButtons();
 
-    $(document).on("click", ".topics", callGifs);
-    $(document).on("click", "img", playPause);
-
+    $(".container").on("click", ".topics", callGifs);
+    $(".container").on("click", "img", playPause);
 });
